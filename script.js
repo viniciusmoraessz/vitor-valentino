@@ -33,21 +33,20 @@ form.addEventListener('submit', (event) => {
   }
 
   const data = new FormData(form);
-  const subject = `Vamos conversar sobre ${data.get('brand')}`;
   const body = [
     `Olá! Meu nome é ${data.get('name')}.`,
-    `Marca: ${data.get('brand')}`,
-    `Segmento: ${data.get('segment')}`,
-    `E-mail: ${data.get('email')}`,
+    `Quero conversar sobre a marca ${data.get('brand')}.`,
+    `Segmento: ${data.get('segment')}.`,
+    `Meu e-mail: ${data.get('email')}.`,
     '',
     'Sobre meu projeto:',
     data.get('message'),
   ].join('\n');
-  const mailto = `mailto:contato@vitorvalentino.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const whatsapp = `https://wa.me/558791371554?text=${encodeURIComponent(body)}`;
   submitButton.disabled = true;
-  submitButton.textContent = 'Abrindo e-mail…';
-  statusBox.textContent = 'Seu aplicativo de e-mail vai abrir com a mensagem pronta. Se isso não acontecer, escreva para contato@vitorvalentino.me.';
-  window.location.href = mailto;
+  submitButton.textContent = 'Abrindo WhatsApp…';
+  statusBox.textContent = 'O WhatsApp vai abrir com sua mensagem pronta para enviar.';
+  window.open(whatsapp, '_blank', 'noopener,noreferrer');
   window.setTimeout(() => {
     submitButton.disabled = false;
     submitButton.innerHTML = 'Enviar <span aria-hidden="true">↗</span>';
